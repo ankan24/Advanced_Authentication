@@ -63,13 +63,25 @@ exports.signup = async (req, res) => {
 
     // Send verification email
     const emailSent = await sendEmail(
-      email,
-      'Email Verification',
-      `<h1>Email Verification</h1>
-      <p>Hello ${name},</p>
-      <p>Thank you for signing up. Your verification code is: <strong>${verificationCode}</strong></p>
-      <p>Please enter this code on the verification page to complete your registration.</p>`
-    );
+    //   email,
+    //   'Shop Sphere Account Verification',
+    //   `<h1 style="color:rgb(255, 48, 48);">Email Verification</h1>
+    //   <p>Hello ${name},</p>
+    //   <p>Thank you for signing up. Your verification code is: <strong style="color: red; font-size: 24px;">${verificationCode}</strong></p>
+    //   <p>Please enter this code on the verification page to complete your registration.</p>`
+    // );
+    email,
+    '🎉 Welcome to Shop Sphere!',
+    `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+      <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+      <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+      <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+      <div style="text-align: center;">
+        <a href="https://shop-sphere-xc2b.onrender.com" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Start Shopping Now 🛒</a>
+      </div>
+      <p style="font-size: 14px; color: #990000; text-align: center;">For any help, contact us at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
+    </div>`
+  );
 
     if (!emailSent) {
       return res.render('signup', { 
@@ -167,13 +179,25 @@ exports.login = async (req, res) => {
       
       // Send verification email again
       await sendEmail(
-        email,
-        'Email Verification',
-        `<h1>Email Verification</h1>
-        <p>Hello ${user.name},</p>
-        <p>Your account is not verified yet. Your new verification code is: <strong>${verificationCode}</strong></p>
-        <p>Please enter this code on the verification page to complete your registration.</p>`
-      );
+      //   email ,
+      //   'Shop Sphere Account Verification',
+      //   `<h1 color:rgb(255, 48, 48);>Email Verification</h1>
+      //   <p>Hello ${user.name},</p>
+      //   <p>Your account is not verified yet. Your new verification code is: <strong style="color: red; font-size: 24px;">${verificationCode}</strong></p>
+      //   <p>Please enter this code on the verification page to complete your registration.</p>`
+      // );
+      email,
+      '🎉 Welcome to Shop Sphere!',
+      `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+        <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+        <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+        <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+        <div style="text-align: center;">
+          <a href="https://shop-sphere-xc2b.onrender.com/" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Start Shopping Now 🛒</a>
+        </div>
+        <p style="font-size: 14px; color: #990000; text-align: center;">For any help, contact us at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
+      </div>`
+    );
       
       return res.redirect(`/verify?email=${email}`);
     }
@@ -235,14 +259,30 @@ exports.forgotPassword = async (req, res) => {
 
     // Send reset code email
     const emailSent = await sendEmail(
-      email,
-      'Password Reset Code',
-      `<h1>Password Reset</h1>
-      <p>Hello ${user.name},</p>
-      <p>You requested a password reset. Your password reset code is: <strong>${resetCode}</strong></p>
-      <p>This code will expire in 1 hour.</p>
-      <p>If you didn't request this, please ignore this email.</p>`
-    );
+    //   email,
+    //   'Shop Sphere Password Reset Code',
+    //   `<h1 color:rgb(255, 48, 48);>Password Reset</h1>
+    //   <p>Hello ${user.name},</p>
+    //   <p>You requested a password reset. Your password reset code is: <strong style="color: red; font-size: 24px;">${resetCode}</strong></p>
+    //   <p>This code will expire in 1 hour.</p>
+    //   <p>If you didn't request this, please ignore this email.</p>`
+    // );
+    email,
+  '🔒 Shop Sphere Password Reset Request',
+  `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+    <h1 style="color: #cc0000; text-align: center;">Reset Your Password 🔑</h1>
+    <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+    <p style="font-size: 16px; color: #990000;">We received a request to reset your password. Use the following code:</p>
+    <div style="text-align: center; margin: 20px 0;">
+      <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${resetCode}</span>
+    </div>
+    <p style="font-size: 16px; color: #990000;">This code will expire in 1 hour. If you did not request this, please ignore this email.</p>
+    <div style="text-align: center;">
+      <a href="https://shop-sphere-authentication.onrender.com/forgot-password" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Reset Password 🔄</a>
+    </div>
+    <p style="font-size: 14px; color: #990000; text-align: center;">Need help? Reach out at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
+  </div>`
+);
 
     if (!emailSent) {
       return res.render('forgot-password', { 
