@@ -63,26 +63,28 @@ exports.signup = async (req, res) => {
 
     // Send verification email
     const emailSent = await sendEmail(
-    //   email,
-    //   'Shop Sphere Account Verification',
-    //   `<h1 style="color:rgb(255, 48, 48);">Email Verification</h1>
-    //   <p>Hello ${name},</p>
-    //   <p>Thank you for signing up. Your verification code is: <strong style="color: red; font-size: 24px;">${verificationCode}</strong></p>
-    //   <p>Please enter this code on the verification page to complete your registration.</p>`
-    // );
-    email,
-    '🎉 Welcome to Shop Sphere!',
-    `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
-      <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
-      <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
-      <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-      <div style="text-align: center;">
-        <a href="https://shop-sphere-xc2b.onrender.com" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Start Shopping Now 🛒</a>
+      email,
+      '🎉 Welcome to Shop Sphere!',
+      `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+        <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+       <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+      <h4  style="color: #cc0000;" >Your verification code is: </h4>
+      <div style="text-align: center; margin: 20px 0;">
+      <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
       </div>
-      <p style="font-size: 14px; color: #990000; text-align: center;">For any help, contact us at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
-    </div>`
-  );
-
+       <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+      <p style="color: #cc0000;" >Please enter this code on the verification page to complete your registration.</p>
+       </div>`
+    );
+  //   email,
+  //   '🎉 Welcome to Shop Sphere!',
+  //   `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+  //     <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+  //     <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+  //     <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+  //   </div>`
+  // );
+ 
     if (!emailSent) {
       return res.render('signup', { 
         error: 'Failed to send verification email. Please try again.',
@@ -190,13 +192,14 @@ exports.login = async (req, res) => {
       '🎉 Welcome to Shop Sphere!',
       `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
         <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
-        <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
-        <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-        <div style="text-align: center;">
-          <a href="https://shop-sphere-xc2b.onrender.com/" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Start Shopping Now 🛒</a>
-        </div>
-        <p style="font-size: 14px; color: #990000; text-align: center;">For any help, contact us at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
-      </div>`
+       <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+      <h4  style="color: #cc0000;" >Your verification code is: </h4>
+      <div style="text-align: center; margin: 20px 0;">
+      <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
+      </div>
+       <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+      <p style="color: #cc0000;" >Please enter this code on the verification page to complete your registration.</p>
+       </div>`
     );
       
       return res.redirect(`/verify?email=${email}`);
@@ -277,10 +280,7 @@ exports.forgotPassword = async (req, res) => {
       <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${resetCode}</span>
     </div>
     <p style="font-size: 16px; color: #990000;">This code will expire in 1 hour. If you did not request this, please ignore this email.</p>
-    <div style="text-align: center;">
-      <a href="https://shop-sphere-authentication.onrender.com/forgot-password" style="background-color: #cc0000; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Reset Password 🔄</a>
-    </div>
-    <p style="font-size: 14px; color: #990000; text-align: center;">Need help? Reach out at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">support@shopsphere.com</a>.</p>
+    <p style="font-size: 14px; color: #990000; text-align: center;">Need help? Reach out at <a href="mailto:support@shopsphere.com" style="color: #cc0000; font-weight: bold;">ankanghorai32@gmail.com</a>.</p>
   </div>`
 );
 
