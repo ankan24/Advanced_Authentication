@@ -73,8 +73,7 @@ exports.signup = async (req, res) => {
       <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
       </div>
        <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-      <p style="color: #cc0000;" >Please enter this code on the verification page to complete your registration.</p>
-       </div>`
+        </div>`
     );
   //   email,
   //   '🎉 Welcome to Shop Sphere!',
@@ -198,8 +197,7 @@ exports.login = async (req, res) => {
       <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
       </div>
        <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-      <p style="color: #cc0000;" >Please enter this code on the verification page to complete your registration.</p>
-       </div>`
+        </div>`
     );
       
       return res.redirect(`/verify?email=${email}`);
