@@ -63,26 +63,17 @@ exports.signup = async (req, res) => {
 
     // Send verification email
     const emailSent = await sendEmail(
-      email,
-      '🎉 Welcome to Shop Sphere!',
-      `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
-        <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
-       <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
-      <h4  style="color: #cc0000;" >Your verification code is: </h4>
+    email,
+    '🎉 Welcome to Shop Sphere!',
+    `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+      <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+      <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
       <div style="text-align: center; margin: 20px 0;">
       <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
       </div>
-       <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-        </div>`
-    );
-  //   email,
-  //   '🎉 Welcome to Shop Sphere!',
-  //   `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
-  //     <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
-  //     <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
-  //     <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-  //   </div>`
-  // );
+      <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+    </div>`
+  );
  
     if (!emailSent) {
       return res.render('signup', { 
@@ -180,25 +171,29 @@ exports.login = async (req, res) => {
       
       // Send verification email again
       await sendEmail(
-      //   email ,
-      //   'Shop Sphere Account Verification',
-      //   `<h1 color:rgb(255, 48, 48);>Email Verification</h1>
-      //   <p>Hello ${user.name},</p>
-      //   <p>Your account is not verified yet. Your new verification code is: <strong style="color: red; font-size: 24px;">${verificationCode}</strong></p>
-      //   <p>Please enter this code on the verification page to complete your registration.</p>`
-      // );
-      email,
-      '🎉 Welcome to Shop Sphere!',
-      `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
-        <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
-       <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
-      <h4  style="color: #cc0000;" >Your verification code is: </h4>
+        email,
+    '🎉 Welcome to Shop Sphere!',
+    `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+      <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+      <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
       <div style="text-align: center; margin: 20px 0;">
       <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
       </div>
-       <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
-        </div>`
-    );
+      <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+    </div>`
+  );
+    //   email,
+    //   '🎉 Welcome to Shop Sphere!',
+    //   `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 2px solid #cc0000; border-radius: 10px; background-color: #ffe6e6;">
+    //     <h1 style="color: #cc0000; text-align: center;">🔥 Welcome to Shop Sphere! 🛍️</h1>
+    //    <p style="font-size: 16px; color: #990000;">Hello <strong>${user.name}</strong>,</p>
+    //   <h4  style="color: #cc0000;" >Your verification code is: </h4>
+    //   <div style="text-align: center; margin: 20px 0;">
+    //   <span style="font-size: 24px; font-weight: bold; color: white; background-color: #cc0000; padding: 10px 20px; border-radius: 5px;">${verificationCode}</span>
+    //   </div>
+    //    <p style="font-size: 16px; color: #990000;">Thank you for signing up at <strong>Shop Sphere</strong>! Get ready for a fantastic shopping experience with exclusive deals and discounts.</p>
+    //     </div>`
+    // );
       
       return res.redirect(`/verify?email=${email}`);
     }
